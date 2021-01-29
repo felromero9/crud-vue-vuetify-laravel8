@@ -14,7 +14,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        //return Article::get();
+        return Article::orderBy('created_at', 'desc')->get();
     }
 
     /**
@@ -25,7 +26,10 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $article = new Article;
+        $article->create(
+            $request->all()
+        );
     }
 
     /**
@@ -36,7 +40,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return $article;
     }
 
     /**
@@ -48,7 +52,9 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $article->update(
+            $request->all()
+        );
     }
 
     /**
@@ -59,6 +65,6 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
     }
 }
